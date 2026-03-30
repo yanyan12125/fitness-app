@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>今天我们都做了什么？</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;600;700&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Noto Sans SC',sans-serif;background:#0f0a1a;color:#e8e0f0;line-height:1.8;overflow-x:hidden}
+
+  .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 20px;background:linear-gradient(135deg,#1a0a2e,#0f0a1a)}
+  .hero h1{font-size:clamp(28px,5vw,48px);font-weight:700;background:linear-gradient(135deg,#ff6b9d,#c084fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:16px}
+  .hero p{color:#a78bba;font-size:16px;max-width:500px}
+  .hero .arrow{margin-top:40px;font-size:28px;animation:bounce 2s infinite;color:#c084fc}
+  @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(12px)}}
+
+  .chapter{max-width:720px;margin:0 auto;padding:80px 24px}
+  .chapter-num{font-size:13px;letter-spacing:3px;text-transform:uppercase;color:#c084fc;font-weight:600;margin-bottom:8px}
+  .chapter h2{font-size:clamp(22px,4vw,32px);font-weight:700;margin-bottom:24px;color:#fff}
+  .chapter p{color:#b8a5cc;margin-bottom:16px;font-size:15px}
+
+  .code-block{background:#1a1028;border:1px solid #2d1f42;border-radius:12px;padding:20px;margin:20px 0;overflow-x:auto;font-size:13px;line-height:1.7}
+  .code-block code{font-family:'SF Mono',Menlo,monospace;color:#e8d5f5}
+  .tag{color:#ff6b9d}
+  .attr{color:#c084fc}
+  .val{color:#34d399}
+  .cmt{color:#6b5a7d}
+
+  .card{background:linear-gradient(135deg,#1a1028,#1f1535);border:1px solid #2d1f42;border-radius:16px;padding:24px;margin:20px 0}
+  .card-title{font-size:16px;font-weight:600;color:#fff;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+  .card p{color:#b8a5cc;font-size:14px}
+
+  .analogy{background:linear-gradient(135deg,#1a0a2e,#0d1a2e);border-left:3px solid #c084fc;border-radius:0 12px 12px 0;padding:20px 24px;margin:20px 0}
+  .analogy .label{font-size:12px;color:#c084fc;font-weight:600;letter-spacing:1px;margin-bottom:8px}
+
+  .interactive{background:#1a1028;border:1px solid #2d1f42;border-radius:16px;margin:24px 0;overflow:hidden}
+  .interactive-header{padding:16px 20px;border-bottom:1px solid #2d1f42;display:flex;align-items:center;gap:8px}
+  .interactive-header .dot{width:10px;height:10px;border-radius:50%}
+  .interactive-body{padding:20px}
+
+  .tab-row{display:flex;gap:0;margin-bottom:16px;border-radius:10px;overflow:hidden;border:1px solid #2d1f42}
+  .tab-btn{flex:1;padding:10px 8px;text-align:center;font-size:13px;font-weight:500;cursor:pointer;border:none;background:#1a1028;color:#8b7a9e;font-family:inherit;transition:.2s}
+  .tab-btn.active{background:linear-gradient(135deg,#ff6b9d,#c084fc);color:#fff}
+  .tab-content{display:none;animation:fadeIn .3s}
+  .tab-content.active{display:block}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+  .flow{display:flex;flex-direction:column;gap:0;margin:20px 0}
+  .flow-step{display:flex;gap:16px;align-items:flex-start}
+  .flow-line{display:flex;flex-direction:column;align-items:center;min-width:32px}
+  .flow-dot{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#ff6b9d,#c084fc);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff;flex-shrink:0}
+  .flow-connector{width:2px;flex:1;background:#2d1f42;min-height:24px}
+  .flow-content{padding:4px 0 24px}
+  .flow-content h4{font-size:15px;font-weight:600;color:#fff;margin-bottom:4px}
+  .flow-content p{font-size:13px;color:#8b7a9e}
+
+  .highlight{color:#ff6b9d;font-weight:600}
+  .highlight-purple{color:#c084fc;font-weight:600}
+
+  .divider{height:1px;background:linear-gradient(90deg,transparent,#2d1f42,transparent);margin:60px 0}
+
+  .final{text-align:center;padding:80px 24px}
+  .final h2{font-size:28px;font-weight:700;background:linear-gradient(135deg,#ff6b9d,#c084fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:16px}
+  .final p{color:#8b7a9e;font-size:15px}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>今天我们都做了什么？</h1>
+  <p>一个网页从「电脑上的文件」变成「手机上的 App」，每一步背后发生了什么</p>
+  <div class="arrow">↓</div>
+</div>
+
+<!-- Chapter 1: HTML 基础 -->
+<div class="chapter">
+  <div class="chapter-num">第一章</div>
+  <h2>HTML 文件是什么？</h2>
+
+  <div class="analogy">
+    <div class="label">类比理解</div>
+    <p>把一个网页想象成一封信。HTML 就是信的内容和格式——标题在哪、正文在哪、图片在哪。浏览器就是帮你读这封信的邮差。</p>
+  </div>
+
+  <p>你的健身 App 整个就是一个 <span class="highlight">index.html</span> 文件。浏览器打开它，按照里面的指令把页面画出来。</p>
+
+  <p>每个 HTML 文件都分成两部分：</p>
+
+  <div class="code-block"><code>
+<span class="tag">&lt;head&gt;</span>  <span class="cmt">&lt;!-- 给浏览器/手机看的"说明书"，用户看不见 --&gt;</span><br>
+<span class="tag">&lt;/head&gt;</span><br><br>
+<span class="tag">&lt;body&gt;</span>  <span class="cmt">&lt;!-- 用户真正看到的页面内容 --&gt;</span><br>
+<span class="tag">&lt;/body&gt;</span>
+  </code></div>
+
+  <div class="card">
+    <div class="card-title">💡 关键认知</div>
+    <p><span class="highlight">&lt;head&gt;</span> 里的东西用户完全看不到，但它决定了网页的"身份"——叫什么名字、长什么图标、怎么在手机上显示。我们今天改的大部分东西，都在 head 里。</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- Chapter 2: Meta 标签 -->
+<div class="chapter">
+  <div class="chapter-num">第二章</div>
+  <h2>Meta 标签：网页的身份证</h2>
+
+  <div class="analogy">
+    <div class="label">类比理解</div>
+    <p>Meta 标签就像你护照上的信息——你自己可能不会天天看，但海关（浏览器）需要它来了解你是谁、从哪来、说什么语言。</p>
+  </div>
+
+  <p>来看看你的健身 App 里的每一行 meta 都在做什么：</p>
+
+  <div class="interactive">
+    <div class="interactive-header">
+      <div class="dot" style="background:#ff5f57"></div>
+      <div class="dot" style="background:#febc2e"></div>
+      <div class="dot" style="background:#28c840"></div>
+    </div>
+    <div class="interactive-body">
+      <div class="tab-row">
+        <button class="tab-btn active" onclick="showTab('meta',0)">charset</button>
+        <button class="tab-btn" onclick="showTab('meta',1)">viewport</button>
+        <button class="tab-btn" onclick="showTab('meta',2)">theme-color</button>
+        <button class="tab-btn" onclick="showTab('meta',3)">apple-web-app</button>
+      </div>
+
+      <div class="tab-content active" id="meta-0">
+        <div class="code-block"><code><span class="tag">&lt;meta</span> <span class="attr">charset</span>=<span class="val">"UTF-8"</span><span class="tag">&gt;</span></code></div>
+        <p><span class="highlight-purple">作用：</span>告诉浏览器"这个网页用 UTF-8 编码"。</p>
+        <p><span class="highlight-purple">大白话：</span>就像告诉翻译官"这封信是中文写的"。没有这行，中文可能变成乱码 ⬜⬜⬜。</p>
+      </div>
+
+      <div class="tab-content" id="meta-1">
+        <div class="code-block"><code><span class="tag">&lt;meta</span> <span class="attr">name</span>=<span class="val">"viewport"</span> <span class="attr">content</span>=<span class="val">"width=device-width, initial-scale=1.0"</span><span class="tag">&gt;</span></code></div>
+        <p><span class="highlight-purple">作用：</span>让网页在手机上正确显示，不要缩成一个小页面。</p>
+        <p><span class="highlight-purple">大白话：</span>手机屏幕和电脑屏幕大小不一样。这行告诉浏览器"请按照手机屏幕的实际宽度来显示，别假装自己是电脑"。没有这行，你的网页在手机上会变得巨小。</p>
+      </div>
+
+      <div class="tab-content" id="meta-2">
+        <div class="code-block"><code><span class="tag">&lt;meta</span> <span class="attr">name</span>=<span class="val">"theme-color"</span> <span class="attr">content</span>=<span class="val">"#c084fc"</span><span class="tag">&gt;</span></code></div>
+        <p><span class="highlight-purple">作用：</span>设置浏览器顶部状态栏的颜色。</p>
+        <p><span class="highlight-purple">大白话：</span>打开你的 App 时，手机最顶上那条状态栏（显示时间、电量的地方）会变成紫色，看起来更像一个真正的 App，不像在浏览器里看网页。</p>
+      </div>
+
+      <div class="tab-content" id="meta-3">
+        <div class="code-block"><code><span class="tag">&lt;meta</span> <span class="attr">name</span>=<span class="val">"apple-mobile-web-app-capable"</span> <span class="attr">content</span>=<span class="val">"yes"</span><span class="tag">&gt;</span><br>
+<span class="tag">&lt;meta</span> <span class="attr">name</span>=<span class="val">"apple-mobile-web-app-status-bar-style"</span> <span class="attr">content</span>=<span class="val">"black-translucent"</span><span class="tag">&gt;</span></code></div>
+        <p><span class="highlight-purple">作用：</span>专门给 iPhone 看的指令。</p>
+        <p><span class="highlight-purple">第一行：</span>告诉 iPhone"这个网页可以全屏运行"——添加到主屏幕后打开，不会显示浏览器的地址栏和工具栏，看起来就像原生 App。</p>
+        <p><span class="highlight-purple">第二行：</span>让状态栏半透明，和你的 App 背景色融为一体。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- Chapter 3: Manifest -->
+<div class="chapter">
+  <div class="chapter-num">第三章</div>
+  <h2>manifest.json：App 的出生证明</h2>
+
+  <div class="analogy">
+    <div class="label">类比理解</div>
+    <p>如果 meta 是护照，那 manifest.json 就是出生证明——它定义了你的 App 叫什么名字、图标长什么样、打开时什么颜色。手机靠这个文件来决定怎么"安装"你的网页。</p>
+  </div>
+
+  <div class="interactive">
+    <div class="interactive-header">
+      <div class="dot" style="background:#ff5f57"></div>
+      <div class="dot" style="background:#febc2e"></div>
+      <div class="dot" style="background:#28c840"></div>
+    </div>
+    <div class="interactive-body">
+      <div class="tab-row">
+        <button class="tab-btn active" onclick="showTab('manifest',0)">name</button>
+        <button class="tab-btn" onclick="showTab('manifest',1)">display</button>
+        <button class="tab-btn" onclick="showTab('manifest',2)">icons</button>
+        <button class="tab-btn" onclick="showTab('manifest',3)">colors</button>
+      </div>
+
+      <div class="tab-content active" id="manifest-0">
+        <div class="code-block"><code><span class="val">"name"</span>: <span class="val">"我的健身"</span>,<br><span class="val">"short_name"</span>: <span class="val">"健身"</span></code></div>
+        <p><span class="highlight-purple">name：</span>App 的完整名字，在安装提示里显示。</p>
+        <p><span class="highlight-purple">short_name：</span>缩写名字，显示在手机桌面图标下方（因为桌面空间小，名字太长会被截断）。</p>
+      </div>
+
+      <div class="tab-content" id="manifest-1">
+        <div class="code-block"><code><span class="val">"display"</span>: <span class="val">"standalone"</span></code></div>
+        <p><span class="highlight-purple">standalone 的意思：</span>"独立运行"——打开后没有浏览器的地址栏、前进后退按钮，看起来就是一个独立的 App。</p>
+        <p>其他选项：<span class="highlight">browser</span>（在浏览器里打开）、<span class="highlight">fullscreen</span>（全屏，连状态栏都没有，适合游戏）。</p>
+      </div>
+
+      <div class="tab-content" id="manifest-2">
+        <div class="code-block"><code><span class="val">"icons"</span>: [{<br>  <span class="val">"src"</span>: <span class="val">"icon-180.png"</span>,<br>  <span class="val">"sizes"</span>: <span class="val">"180x180"</span>,<br>  <span class="val">"type"</span>: <span class="val">"image/png"</span><br>}]</code></div>
+        <p><span class="highlight-purple">作用：</span>告诉手机"我的图标在哪里、多大、什么格式"。</p>
+        <p>为什么你之前图标显示的是"我"字？因为没有提供 PNG 图标，iPhone 就自动截取了网页的第一个字作为图标。加了这个之后，它就知道要用你的哑铃图标了。</p>
+      </div>
+
+      <div class="tab-content" id="manifest-3">
+        <div class="code-block"><code><span class="val">"background_color"</span>: <span class="val">"#faf5ff"</span>,<br><span class="val">"theme_color"</span>: <span class="val">"#c084fc"</span></code></div>
+        <p><span class="highlight-purple">background_color：</span>App 启动时、内容还没加载出来之前，屏幕显示的底色。就像 App 的"开屏背景"。</p>
+        <p><span class="highlight-purple">theme_color：</span>手机系统 UI（状态栏等）的颜色，和前面 meta 里的 theme-color 作用类似，但这个是给 Android 用的。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🤔 为什么 meta 和 manifest 有重复的信息？</div>
+    <p>因为历史原因，iPhone（iOS）和 Android 读的东西不一样。iPhone 主要看 meta 标签和 apple-touch-icon，Android 主要看 manifest.json。所以两边都要写，才能保证所有手机都能正确显示。</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- Chapter 4: 部署 -->
+<div class="chapter">
+  <div class="chapter-num">第四章</div>
+  <h2>从电脑到全世界：部署是怎么回事</h2>
+
+  <div class="analogy">
+    <div class="label">类比理解</div>
+    <p>你写了一本书（代码），现在放在你家书架上（电脑）。别人想看？他们得来你家。部署就是把书送到图书馆（服务器），任何人随时都能借阅。</p>
+  </div>
+
+  <div class="flow">
+    <div class="flow-step">
+      <div class="flow-line"><div class="flow-dot">1</div><div class="flow-connector"></div></div>
+      <div class="flow-content">
+        <h4>你的电脑上有代码</h4>
+        <p>index.html 只存在你的硬盘里，地址是 file:///Users/... 开头的，别人访问不了</p>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-line"><div class="flow-dot">2</div><div class="flow-connector"></div></div>
+      <div class="flow-content">
+        <h4>推到 GitHub</h4>
+        <p>代码上传到 GitHub 的服务器，有了备份和版本管理，但还不是网站</p>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-line"><div class="flow-dot">3</div><div class="flow-connector"></div></div>
+      <div class="flow-content">
+        <h4>Netlify 读取 GitHub</h4>
+        <p>Netlify 从 GitHub 拉取你的代码，放到它的服务器上，生成一个 https:// 开头的公开链接</p>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-line"><div class="flow-dot">4</div><div class="flow-connector"></div></div>
+      <div class="flow-content">
+        <h4>全世界都能访问了</h4>
+        <p>任何设备打开那个链接，Netlify 的服务器就把你的文件发给他们的浏览器</p>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-line"><div class="flow-dot">✨</div></div>
+      <div class="flow-content">
+        <h4>自动更新</h4>
+        <p>以后你改了代码推到 GitHub，Netlify 会自动检测到变化，几秒钟内更新线上版本</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- Chapter 5: 全景图 -->
+<div class="chapter">
+  <div class="chapter-num">第五章</div>
+  <h2>全景图：每个文件都在做什么</h2>
+
+  <div class="interactive">
+    <div class="interactive-header">
+      <div class="dot" style="background:#ff5f57"></div>
+      <div class="dot" style="background:#febc2e"></div>
+      <div class="dot" style="background:#28c840"></div>
+    </div>
+    <div class="interactive-body">
+      <div class="tab-row">
+        <button class="tab-btn active" onclick="showTab('files',0)">index.html</button>
+        <button class="tab-btn" onclick="showTab('files',1)">manifest.json</button>
+        <button class="tab-btn" onclick="showTab('files',2)">icon-180.png</button>
+        <button class="tab-btn" onclick="showTab('files',3)">README.md</button>
+      </div>
+
+      <div class="tab-content active" id="files-0">
+        <p><span class="highlight">index.html</span> — 整个 App 的全部内容</p>
+        <p>包含三个部分：</p>
+        <p>1. <span class="highlight-purple">&lt;style&gt;</span> 标签里的 CSS — 决定长什么样（颜色、布局、动画）</p>
+        <p>2. <span class="highlight-purple">HTML 标签</span> — 决定有什么内容（按钮、文字、列表）</p>
+        <p>3. <span class="highlight-purple">&lt;script&gt;</span> 标签里的 JavaScript — 决定怎么交互（点击、计时、记录）</p>
+      </div>
+
+      <div class="tab-content" id="files-1">
+        <p><span class="highlight">manifest.json</span> — App 的身份配置</p>
+        <p>告诉手机：这个网页可以当 App 安装，它叫什么名字、图标在哪、要不要全屏显示。</p>
+        <p>没有这个文件，"添加到主屏幕"就只是一个普通的网页快捷方式。有了它，才真正变成 PWA。</p>
+      </div>
+
+      <div class="tab-content" id="files-2">
+        <p><span class="highlight">icon-180.png</span> — App 图标</p>
+        <p>180x180 像素的 PNG 图片。为什么是 180？因为 iPhone 主屏幕图标需要这个尺寸（60pt x 3倍屏幕 = 180px）。</p>
+        <p>之前用 SVG 格式 iPhone 不认，换成 PNG 就好了——这就是为什么了解平台差异很重要。</p>
+      </div>
+
+      <div class="tab-content" id="files-3">
+        <p><span class="highlight">README.md</span> — 项目说明书</p>
+        <p>给人看的，不是给机器看的。打开 GitHub 仓库页面时，这个文件的内容会自动显示在首页。</p>
+        <p>好的 README 让别人 30 秒内知道你的项目是什么、怎么用。也是你作品集的一部分。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="final">
+  <h2>你今天学到的，比你以为的多得多</h2>
+  <p>你不只是"做了一个网页"——你走完了一个产品从想法到上线的完整流程。<br>这就是 vibecoding 的全部意义。✨</p>
+</div>
+
+<div style="height:80px"></div>
+
+<script>
+function showTab(group, index) {
+  // hide all tabs in this group
+  let i = 0;
+  while (document.getElementById(group + '-' + i)) {
+    document.getElementById(group + '-' + i).classList.remove('active');
+    i++;
+  }
+  document.getElementById(group + '-' + index).classList.add('active');
+
+  // update buttons
+  const container = document.getElementById(group + '-' + index).closest('.interactive-body');
+  const buttons = container.querySelectorAll('.tab-btn');
+  buttons.forEach((btn, idx) => {
+    btn.classList.toggle('active', idx === index);
+  });
+}
+</script>
+</body>
+</html>
