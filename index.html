@@ -1456,7 +1456,7 @@ function exitCardio() {
 
 // ==================== SEED DATA ====================
 function seedRoutines() {
-  const SEED_VERSION = 4;
+  const SEED_VERSION = 5;
   const lastVersion = parseInt(localStorage.getItem('fit_seed_version') || '0');
   if (lastVersion >= SEED_VERSION) return;
   localStorage.setItem('fit_seed_version', SEED_VERSION);
@@ -1465,7 +1465,8 @@ function seedRoutines() {
   let routines = getRoutines().filter(r =>
     r.name !== '臀腿日' &&
     r.name !== '臀腿日（教练建议版）' &&
-    r.name !== '臀腿日（排球强化版）'
+    r.name !== '臀腿日（排球强化版）' &&
+    r.name !== '上肢练背（排球强化版）'
   );
   const hasOriginal = false;
   const hasCoach = false;
@@ -1510,6 +1511,31 @@ function seedRoutines() {
       ]
     });
   }
+
+  routines.push({
+    name: '上肢练背（排球强化版）',
+    restSeconds: 60,
+    createdAt: Date.now() + 2,
+    exercises: [
+      // === 激活 ~5min ===
+      { name: '猫牛式热身', type: 'time', duration: 60, sets: 1, note: '🧘 四点跪姿，交替弓背低头（猫）和塌腰抬头（牛），各停 2 秒。激活胸椎灵活性，排球扣球和举球全靠胸椎旋转打开' },
+      { name: '弹力带拉面', type: 'reps', reps: 15, sets: 2, note: '弹力带举过头顶，双手向两侧拉开至与肩同宽。激活中下斜方肌和菱形肌，改善圆肩，为大重量背部训练做准备' },
+
+      // === 背部力量 ~25min ===
+      { name: '哑铃划船', type: 'reps', reps: 12, sets: 4, note: '15-20lb 哑铃，单手撑凳。🔑 手肘贴身向后拉，顶部挤背停 1 秒。排球扣球收臂和防守摆臂的核心发力肌群。拉的时候想象肘部往后口袋塞东西' },
+      { name: '宽距引体/高位下拉', type: 'reps', reps: 8, sets: 3, note: '握距比肩宽一拳半。没法做引体就用高位下拉器。🏐 背阔肌是扣球鞭打动作的主要发力源，宽握更针对背阔肌外侧，打出的球更有力' },
+      { name: '坐姿窄距绳索划船', type: 'reps', reps: 12, sets: 3, note: '窄握 V 把手，挺胸拉向肚脐，顶部停 2 秒挤背。🎯 训练中背厚度（菱形肌+中斜方肌），提高举球和传球时肩胛稳定性' },
+      { name: '直臂下压', type: 'reps', reps: 15, sets: 3, note: '绳索/弹力带固定高处，直臂往下压到大腿前。🏐 模拟扣球挥臂轨迹，直接强化背阔肌收缩发力，扣球杀伤力训练' },
+
+      // === 肩后束+上背 ~10min ===
+      { name: '俯身飞鸟', type: 'reps', reps: 15, sets: 3, note: '5-10lb 哑铃，俯身 45°，手臂微弯向两侧展开。🛡️ 练肩后束和菱形肌，排球防守准备姿势手臂外展全靠这里。也能平衡肩关节前后力量预防伤病' },
+      { name: 'YTW 举', type: 'reps', reps: 8, sets: 2, note: '轻哑铃或无重量，俯身做 Y（手臂斜上举）→ T（手臂侧平举）→ W（肘弯曲往后收缩）各 8 次。🔒 强化肩袖稳定肌群，排球运动员肩膀高频使用必须做的防伤动作' },
+
+      // === 收尾 ~5min ===
+      { name: '死虫子 Dead Bug', type: 'reps', reps: 10, sets: 2, note: '仰卧，对侧手脚交替伸展，腰部始终贴地。🎯 训练核心抗旋转能力，排球扣球空中转体和接球急停都需要的稳定性' },
+      { name: '上背拉伸', type: 'time', duration: 180, sets: 1, note: '🧘 ①门框胸肌拉伸每侧30秒 ②跪姿背阔肌拉伸30秒 ③十字交叉肩部拉伸每侧20秒 ④婴儿式30秒' },
+    ]
+  });
 
   saveRoutines(routines);
 }
