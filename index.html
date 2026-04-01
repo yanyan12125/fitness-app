@@ -1289,7 +1289,7 @@ function seedRoutines(){
 
 // ==================== THEME ====================
 const V2_THEMES=['slash','brutal','minimal','poster'];
-const V2_ICONS={slash:'🎨',brutal:'🍵',minimal:'🔥',poster:'⚡'};
+const V2_ICONS={slash:'⚡',brutal:'🎨',minimal:'🍵',poster:'🔥'};
 const V2_LABELS={slash:'斜切运动',brutal:'涂鸦',minimal:'简约',poster:'海报撞色'};
 
 function loadTheme(){
@@ -1313,8 +1313,8 @@ function updateThemeBtn(){
   const cur=V2_THEMES.find(t=>t!=='slash'&&document.body.classList.contains(t))||'slash';
   const idx=V2_THEMES.indexOf(cur);
   const next=V2_THEMES[(idx+1)%V2_THEMES.length];
-  btn.textContent=V2_ICONS[next];
-  btn.title='→ '+V2_LABELS[next];
+  btn.textContent=V2_ICONS[cur];
+  btn.title=V2_LABELS[cur]+' → 点击切换';
 }
 
 loadTheme();

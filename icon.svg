@@ -1,18 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <rect width="512" height="512" fill="#1a1a2e"/>
-  <!-- Diagonal slash accent -->
-  <polygon points="0,0 200,0 120,512 0,512" fill="#e63312" opacity=".18"/>
-  <!-- Bottom-right corner chip -->
-  <polygon points="512,420 512,512 420,512" fill="#e63312"/>
-  <!-- Stylized "F" letterform — angular, athletic -->
-  <g fill="#faf0e4">
-    <!-- Vertical bar -->
-    <polygon points="148,96 192,96 180,416 136,416"/>
-    <!-- Top horizontal — full width, skewed -->
-    <polygon points="148,96 376,96 370,144 154,144"/>
-    <!-- Middle bar — shorter, skewed -->
-    <polygon points="160,232 320,232 316,276 164,276"/>
+  <rect width="512" height="512" rx="112" fill="#f8f5ee"/>
+  <g transform="translate(256,256)">
+    <!-- Bar -->
+    <rect x="-87" y="-14" width="174" height="28" rx="14" fill="#3c3732"/>
+    <!-- Inner plates -->
+    <rect x="-143" y="-67" width="61" height="134" rx="10" fill="#3c3732"/>
+    <rect x="82" y="-67" width="61" height="134" rx="10" fill="#3c3732"/>
+    <!-- Outer plates — mint green -->
+    <rect x="-184" y="-87" width="51" height="174" rx="10" fill="#50a078"/>
+    <rect x="133" y="-87" width="51" height="174" rx="10" fill="#50a078"/>
   </g>
-  <!-- Small accent dot -->
-  <rect x="340" y="360" width="36" height="36" fill="#e63312" transform="rotate(45,358,378)"/>
 </svg>
